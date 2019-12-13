@@ -97,7 +97,32 @@ class SortingRobot:
         Sort the robot's list.
         """
         # Fill this out
-        pass
+
+        # this robot is either containing an item or not
+        # it has a current index
+        # pick up the first item
+        # compare the current index to the next index until the robot cannot move right anymore
+        # if the current index is > the item held, switch and continue on. else, continue on and do not switch
+        # then compare the current index to left index
+        
+        # Swap None with first item
+        self.swap_item()
+        while self.can_move_right:
+            # compare and swap
+            if self.move_right() and self.compare_item() == 1:
+                self.move_right()
+                self.swap_item()
+            elif self.move_right and self.compare_item() == -1:
+                self.move_right()
+
+        while self.can_move_left:
+            # compare and swap
+            if self.move_left() and self.compare_item() == 1:
+                self.move_left()
+                self.swap_item()
+            elif self.move_left and self.compare_item() == -1:
+                self.move_left()
+        
 
 
 if __name__ == "__main__":
