@@ -14,6 +14,8 @@ c) The complexity of this function is O(n). This recursive function has an 0(1) 
 
 For this problem, instead of starting at the first floor, dropping an egg to see if it breaks, and continuing this until we get an egg that breaks; I would split the building in two halves- upper and lower. I would first first the middle of the building and check to see if dropping an egg there breaks. Because we are looking for the first floor where an egg breaks, if egg does break at middle: check the floor below. If it also breaks there, we can disregard the upper portion completely and redo the process with the lower half. If the egg did not break, the same would follow for the upper half, etc, until we find a position where an egg[i] does not break and egg[i + 1] does break.
 
+Complexity: O(n / 2)
+
 def find_f(floors):
     BASE CASE
     if len(floors) == 1:
@@ -25,7 +27,7 @@ def find_f(floors):
         if egg != broken:
             return 0
 
-    mid == floors // 2
+    mid = floors // 2
     if drop_egg(mid) == 1:
         if drop_egg(mid - 1) == 0:
             f = floors[mid]
