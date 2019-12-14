@@ -3,16 +3,15 @@ Your function should take in a single parameter (a string `word`)
 Your function should return a count of how many occurences of ***"th"*** occur within `word`. Case matters.
 Your function must utilize recursion. It cannot contain any loops.
 '''
-import re
+
 def count_th(word):
-    if len(word) == 0:
+
+    if len(word) < 2:
         return 0
 
-    if len(word) == 1:
-        return 
+    elif word[0] == "t" and word[1] == "h":
+        # if word begins with "th" => + 1
+        return 1 + count_th(word[1:])
 
-    x = re.findall("th", word)
-    mid = len(word) // 2
-    count_th(word[:mid])
-    count_th(word[mid:])
-    return len(x)
+    else: 
+        return count_th(word[1:])
