@@ -96,33 +96,33 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
-
-        # this robot is either containing an item or not
-        # it has a current index
-        # pick up the first item
-        # compare the current index to the next index until the robot cannot move right anymore
-        # if the current index is > the item held, switch and continue on. else, continue on and do not switch
-        # then compare the current index to left index
-        
-        # Swap None with first item
+        # initiate first swap
         self.swap_item()
-        while self.can_move_right:
-            # compare and swap
-            if self.move_right() and self.compare_item() == 1:
-                self.move_right()
-                self.swap_item()
-            elif self.move_right and self.compare_item() == -1:
-                self.move_right()
 
-        while self.can_move_left:
-            # compare and swap
-            if self.move_left() and self.compare_item() == 1:
-                self.move_left()
-                self.swap_item()
-            elif self.move_left and self.compare_item() == -1:
-                self.move_left()
-        
+        # will always run
+        while self.light_is_on() == False:
+            while self.can_move_right():
+                while self.move_right():
+                    # find largest, bring to end
+                    if self.compare_item() == - 1:
+                        self.swap_item()
+                    
+                if self.compare_item() == 1:
+                    self.swap_item()
+                # final inner loop index
+                elif self.compare_item() == None:
+                    self.swap_item()
+                    return
+                
+                while self.move_left():               
+                    # back at beginning
+                    if self.compare_item() == None:
+                        self.swap_item()
+                        self.move_right()
+                        self.swap_item()
+                if self.compare_item() == -1:
+                    self.swap_item()
+                continue
 
 
 if __name__ == "__main__":
